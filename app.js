@@ -20,6 +20,8 @@ io.on('connection', (socket) => {
     console.log('Client disconnected:', socket.id); 
   });
 });
+
+
 const port=process.env.PORT
 const {connectDb} =require("./config/db")
 const cors=require("cors")
@@ -31,6 +33,10 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true
 }));
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; font-src https://social-media-backend-two-murex.vercel.app;");
+  next();
+});
 connectDb()
 
 app.get('/', (req, res) => {
