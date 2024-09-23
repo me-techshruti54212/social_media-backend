@@ -8,7 +8,8 @@ const io = require("socket.io")(server, {
   cors: {
     origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
     methods: ['GET', 'POST'],
-    credentials: true
+    credentials: true,
+    transports: ['websocket']
   }
 });
 
