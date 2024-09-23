@@ -6,7 +6,8 @@ require("dotenv").config()
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin:'*' ||  'https://social-media-frontend-flame.vercel.app',
+    // origin:'*' ||  'https://social-media-frontend-flame.vercel.app',
+    origin:'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true,
     
@@ -31,7 +32,8 @@ const bodyParser = require("body-parser");
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(cors({
-  origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
+  // origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
+  origin:'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ["Content-Type"],
