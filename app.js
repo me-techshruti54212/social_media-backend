@@ -6,7 +6,7 @@ require("dotenv").config()
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
+    origin:'*' ||  'https://social-media-frontend-flame.vercel.app',
     methods: ['GET', 'POST'],
     credentials: true,
     
