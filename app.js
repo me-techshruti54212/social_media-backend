@@ -9,8 +9,9 @@ const io = require("socket.io")(server, {
     origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
     methods: ['GET', 'POST'],
     credentials: true,
-    transports: ['websocket']
-  }
+    
+  },
+  transports: ['websocket']
 });
 
 app.set('socketio', io);
