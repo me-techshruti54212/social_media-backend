@@ -32,7 +32,9 @@ app.use(bodyParser.json());
 app.use(cors({
   origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
   methods: ['GET', 'POST'],
-  credentials: true
+  credentials: true,
+  allowedHeaders: ["Content-Type"],
+
 }));
 app.use((req, res, next) => {
   res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; font-src https://social-media-backend-two-murex.vercel.app;");
