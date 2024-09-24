@@ -6,13 +6,13 @@ require("dotenv").config()
 const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
-    origin:'*' ||  'https://social-media-frontend-flame.vercel.app',
+   origin: ['https://social-media-frontend-flame.vercel.app', 'http://localhost:3000'],
     // origin:'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true,
     
   },
-  transports: ['websocket']
+  transports: ['websocket','polling']
 });
 
 app.set('socketio', io);
@@ -32,17 +32,17 @@ const bodyParser = require("body-parser");
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(cors({
-  origin: [process.env.FRONTEND_URL || 'http://localhost:3000', 'https://social-media-frontend-flame.vercel.app'],
+ origin: ['https://social-media-frontend-flame.vercel.app', 'http://localhost:3000'],
   // origin:'http://localhost:3000',
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ["Content-Type"],
 
 }));
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; font-src https://social-media-backend-two-murex.vercel.app;");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' data:; font-src https://social-media-backend-two-murex.vercel.app;");
+//   next();
+// });
 connectDb()
 
 app.get('/', (req, res) => {
