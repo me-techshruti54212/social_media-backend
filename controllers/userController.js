@@ -1,7 +1,7 @@
 const { User } = require("../models/userModel");
 const express=require("express")
 const app=express()
-
+// const {io}=require("../app")
 const userdata = async (req, res) => {
   try {
     const { name, link, image } = req.body;
@@ -29,7 +29,7 @@ const userdata = async (req, res) => {
     const addData = new User(user);
     await addData.save();
     const io = req.app.get('socketio'); // Get Socket.IO instance
-    io.emit('newUser', addData);
+  io.emit('newUser', addData);
     res.json({ message: "User details added", success: true });
   } catch (err) {
     console.log(err);

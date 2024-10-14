@@ -7,14 +7,13 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server, {
   cors: {
   //  origin: ['https://social-media-frontend-flame.vercel.app', 'http://localhost:3000'],
-    origin:'http://localhost:3000',
+    origin:'https://social-media-frontend-flame.vercel.app',
     methods: ['GET', 'POST'],
     credentials: true,
     
   },
   transports: ['websocket','polling']
 });
-
 app.set('socketio', io);
 io.on('connection', (socket) => {
   console.log('New client connected:', socket.id); 
@@ -33,7 +32,7 @@ app.use(express.json())
 app.use(bodyParser.json());
 app.use(cors({
 //  origin: ['https://social-media-frontend-flame.vercel.app', 'http://localhost:3000'],
-  origin:'http://localhost:3000',
+  origin:'https://social-media-frontend-flame.vercel.app',
   methods: ['GET', 'POST'],
   credentials: true,
   allowedHeaders: ["Content-Type"],
@@ -50,6 +49,5 @@ app.get('/', (req, res) => {
   
   });
 app.use("/",userRouter)
-
 
 server.listen(port,()=>console.log(`Server started at port ${port}`))
