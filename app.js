@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
 });
 
 
-const port=process.env.PORT
+const port=process.env.PORT || 8000
 const {connectDb} =require("./config/db")
 const cors=require("cors")
 const bodyParser = require("body-parser");
